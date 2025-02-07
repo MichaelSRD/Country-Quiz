@@ -17,11 +17,7 @@ interface QuestionProps {
 
 
 export default function Question({ question2, handleAnswer, isDisabled, questionId, userAnswers}: QuestionProps) {
-  const [activeAnswer, setActiveAnswer] = useState<string | null>(null);
-  
-  const ActiveAnswer = (option: string) => {
-    setActiveAnswer(option); 
-  }
+ 
   if (!question2) {
     return <p>Loading.....</p>;
   }
@@ -40,7 +36,6 @@ export default function Question({ question2, handleAnswer, isDisabled, question
         <button key={
           `${questionId}-${index}`
         } className={` cursor-pointer ${userAnswers ? '':'hover:bg-gradient-to-r from-[#E65895] to-[#BC6BE8]' } bg-[#393F6E] w-full text-center p-3 rounded-md  ${ userAnswers == option ? 'bg-gradient-to-r from-[#E65895] to-[#BC6BE8]':'' }  `} onClick={()=>{ handleAnswer(option)
-        ActiveAnswer(option)
         }} disabled={isDisabled} >{option} { userAnswers == option && (question2.correctAnswer == option ? '✔️' : '❌') } 
         {userAnswers && userAnswers !== option && question2.correctAnswer === option && '✔️' }
         </button>
